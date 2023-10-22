@@ -1,14 +1,14 @@
 package ProyectoLista;
 
-public class Lista 
+public class Lista<E> 
 {
     protected Nodo cabeza;
     protected Nodo fin;
     
     public Lista()
     {
-        cabeza = null;
-        fin = null;
+        this.cabeza = null;
+        this.fin = null;
     }
     
     public boolean VACIA()
@@ -23,10 +23,10 @@ public class Lista
         }
     }
         
-    public void INSERTA(String dato, int posicion)
+    public void INSERTA(E dato, int posicion)
     {
         if(posicion == 1){
-            cabeza = new Nodo(dato,cabeza);
+            cabeza = new Nodo(dato,cabeza.siguiente);
             if(fin == null)
             {
             fin = cabeza;
@@ -59,7 +59,7 @@ public class Lista
         return contador+1;
     }
     
-    public int LOCALIZA(String dato)
+    public int LOCALIZA(E dato)
     {
         if(!VACIA()){
                 if(dato.equals(cabeza.dato)){ //if(cabeza.dato == dato)
@@ -69,24 +69,19 @@ public class Lista
                     return FIN()-1;
                 
                 } else{
-                    int posicion=0, contador=1;
+                    int contador=1;
                     Nodo recorrido = cabeza;
-                    while(contador!=FIN()-1 && posicion!=contador)
+                    while(recorrido != null)
                     {
+                        if(dato.equals(recorrido.dato)) {
+                            return contador;
+                        }
                         recorrido = recorrido.siguiente;
                         contador++;
-                        
-                        if(dato.equals(recorrido.dato)){ //if(dato == recorrido.dato)
-                            posicion = contador;
-                        }
-                        
                     }
-                    if(posicion>0)
-                    return posicion;
+                    return -1;
                 }
         }
-        
-        return FIN(); 
         
     }
     
@@ -95,25 +90,33 @@ public class Lista
         cabeza = fin;
     }
     
-    public String RECUPERA(int posicion){
+    public E RECUPERA(int posicion){
         Nodo recupera = cabeza;
         
             for (int i = 1; i < posicion; i++) {
             recupera = recupera.siguiente;
             }
-            String copia = recupera.dato;
+            E copia = recupera.dato;
             return copia;
         
     }
     
     public int SIGUIENTE(int posicion)
     {
-        return posicion + 1;
+        if(posicion < FIN() - 1 && posicion > 0) {
+            return posicion + 1;
+        } else {
+            return -1;
+        }
     }
     
     public int ANTERIOR(int posicion)
     {
-        return posicion - 1;
+        if(posicion >= 1 && posicion < FIN()) {
+            return posicion - 1;
+        } else {
+            return -1;
+        }
     }
     
     public int PRIMERO()

@@ -1,6 +1,6 @@
 package ProyectoLista;
 
-public class Pila extends Lista {
+public class Pila<E> extends Lista {
     
     public Pila()
     {
@@ -12,7 +12,7 @@ public class Pila extends Lista {
         SUPRIME(PRIMERO());
     }
     
-    public String TOPE()
+    public E TOPE()
     {
         return RECUPERA(PRIMERO());
     }
@@ -24,7 +24,7 @@ public class Pila extends Lista {
         fin = null;
     }
     
-    public void METE(String dato)
+    public void METE(E dato)
     {
         INSERTA(dato, PRIMERO());
     }

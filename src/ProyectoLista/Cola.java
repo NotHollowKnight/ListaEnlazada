@@ -1,6 +1,6 @@
 package ProyectoLista;
 
-public class Cola extends Lista {
+public class Cola<E> extends Lista {
     
     public Cola()
     {
@@ -14,7 +14,7 @@ public class Cola extends Lista {
        fin = null;
     }
     
-    public String FRENTE()
+    public E FRENTE()
     {
         return RECUPERA(PRIMERO());
     }
