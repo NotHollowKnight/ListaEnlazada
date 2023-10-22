@@ -1,14 +1,14 @@
 package ProyectoLista;
 
-public class Nodo 
+public class Nodo<E> 
 {
-    public String dato;
-    public Nodo siguiente;
+    private E dato;
+    private Nodo<E> siguiente;
     
-    public Nodo(String dato)
+    public Nodo(E dato)
     {
     this.dato = dato;
-    siguiente = null;
+    this.siguiente = null;
     }
     
     public Nodo(String dato, Nodo siguiente)
